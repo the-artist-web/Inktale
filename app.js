@@ -7,6 +7,7 @@ const express = require("express");
 require("dotenv").config();
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
+const path = require("path");
 
 /**
  * custom moduels
@@ -34,6 +35,7 @@ const app = express();
 /**
  * setting view engine
  */
+app.set("views", path.join(__dirname, "./views"));
 app.set("view engine", "ejs");
 
 /**
