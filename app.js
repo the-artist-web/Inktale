@@ -141,9 +141,17 @@ const PORT = process.env.PORT || 3000;
 module.exports = app;
 
 const server = app.listen(PORT, async () => {
-    console.log(`server listening on port http://localhost:${PORT}`);
+    console.log(`Server listening on port http://localhost:${PORT}`);
 
-    await connectDB(process.env.MONGO_CONNECTION_URI);
+    try {
+        await connectDB(process.env.MONGO_CONNECTION_URI);
+    } catch (error) {
+        console.error("Error connecting to MongoDB:", error);
+        process.exit(1);
+    };
 });
 
-server.on("close", async () => await disconnectDB());
+server.on("close", async () => {
+    console.log("Closing server...");
+    await disconnectDB();
+});
