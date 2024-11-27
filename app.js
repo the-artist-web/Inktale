@@ -132,6 +132,14 @@ app.use("/dashboard", dashboard);
 app.use("/settings", settings);
 
 /**
+ * vercel.live
+ */
+app.use((req, res, next) => {
+    res.setHeader("Content-Security-Policy", "script-src 'self' https://vercel.live;");
+    next();
+});
+
+/**
  * start server
  */
 const PORT = process.env.PORT || 3000;
