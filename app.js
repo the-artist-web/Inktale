@@ -135,6 +135,9 @@ app.use("/settings", settings);
  * start server
  */
 const PORT = process.env.PORT || 3000;
+
+module.exports = app;
+
 const server = app.listen(PORT, async () => {
     console.log(`server listening on port http://localhost:${PORT}`);
 
