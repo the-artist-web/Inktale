@@ -137,21 +137,10 @@ app.use("/settings", settings);
  * start server
  */
 const PORT = process.env.PORT || 3000;
-
-module.exports = app;
-
 const server = app.listen(PORT, async () => {
-    console.log(`Server listening on port http://localhost:${PORT}`);
+    console.log(`server listening on port http://localhost:${PORT}`);
 
-    try {
-        await connectDB(process.env.MONGO_CONNECTION_URI);
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-        process.exit(1);
-    };
+    await connectDB(process.env.MONGO_CONNECTION_URI);
 });
 
-server.on("close", async () => {
-    console.log("Closing server...");
-    await disconnectDB();
-});
+server.on("close", async () => await disconnectDB());
