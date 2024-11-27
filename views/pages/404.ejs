@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "404 | Inktale" }) %>
+        <script type="module" src="/js/script.js"></script>
+    </head>
+    <body>
+        <main class="main">
+            <article class="page not-found-page">
+                <div class="container">
+                    <h2 class="display-large text-on-surface">
+                        404
+
+                        <span class="headline-large">
+                            Page not found!
+                        </span>
+                    </h2>
+
+                    <p class="body-large text-on-surfce-variant text-404">
+                        This page doesn't exist or was removed!
+                        We suggest to go back home.
+                    </p>
+
+                    <a href="/" class="btn btn-fill">
+                        <p class="label-large">Take me home</p>
+
+                        <div class="state-layer"></div>
+                    </a>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+    </body>
+</html>

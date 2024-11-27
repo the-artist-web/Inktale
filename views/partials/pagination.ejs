@@ -1,0 +1,30 @@
+<% 
+    const {
+        next,
+        prev,
+        totalPage,
+        currentPage
+    } = locals.pagination;
+%>
+
+<div class="pagination">
+    <a href="<%= prev %>" class="btn filled-tonal" <%= !prev ? "disabled" : "" %>>
+        <i class="fa-solid fa-chevron-left || leading-icon"></i>
+
+        <p class="label-large text">Previous</p>
+
+        <div class="state-layer"></div>
+    </a>
+
+    <p class="label-large text-on-surface">
+        <%= currentPage %> / <%= totalPage %>
+    </p>
+
+    <a href="<%= next %>" class="btn filled-tonal" <%= !next ? "disabled" : "" %>>
+        <p class="label-large text">Next</p>
+
+        <i class="fa-solid fa-chevron-right || leading-icon"></i>
+
+        <div class="state-layer"></div>
+    </a>
+</div>

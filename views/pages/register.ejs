@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Register | Inktale" }) %>
+        <script type="module" src="/js/register.js"></script>
+    </head>
+    <body>
+        <section class="form-section section">
+            <div class="container">
+                <div class="form-card">
+                    <div class="card-header">
+                        <a href="/" class="logo">
+                            <img 
+                                src="/images/logo-light.svg"
+                                alt="Inktale"
+                                width="163" 
+                                height="40" 
+                                loading="lazy"
+                                class="light"
+                            />
+
+                            <img 
+                                src="/images/logo-dark.svg"
+                                alt="Inktale"
+                                width="163" 
+                                height="40" 
+                                loading="lazy"
+                                class="dark"
+                            />
+                        </a>
+
+                        <p class="text-on-surface-variant body-large">
+                            Join the inktale community
+                        </p>
+                    </div>
+
+                    <form action="/register" class="form" data-form>
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="name" 
+                                class="label body-large"
+                            >Full name</label>
+                            <input 
+                                type="text" 
+                                name="name" 
+                                id="name" 
+                                autocomplte="name" 
+                                autofocus 
+                                placeholder="" 
+                                required 
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="email" 
+                                class="label body-large"
+                            >Email</label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                autocomplte="email" 
+                                placeholder="" 
+                                required 
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="password" 
+                                class="label body-large"
+                            >Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                id="password" 
+                                autocomplte="password" 
+                                placeholder="" 
+                                minlength="8" 
+                                required 
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="confirm-password" 
+                                class="label body-large"
+                            >Confirm password</label>
+                            <input 
+                                type="password" 
+                                name="confirm_password" 
+                                id="confirm-password"
+                                placeholder="" 
+                                required 
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="btn btn-fill" 
+                            data-submit-btn
+                        >
+                            <p class="label-large">Sign up</p>
+
+                            <div class="state-layer"></div>
+                        </button>
+                    </form>
+
+                    <div class="card-footer">
+                        <p class="label-large">Aleardy have an account?</p>
+
+                        <a href="/login" class="text-primary label-large">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="snackbar-wrapper" data-stackbar-wrapper></div>
+    </body>
+</html>

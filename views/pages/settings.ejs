@@ -1,0 +1,255 @@
+<% 
+    const {
+        profilePhoto: {
+            url: profilePhotoURL
+        } = {},
+        name,
+        username,
+        email,
+        bio
+    } = locals.currentUser;
+
+    const compressedProfilePhotoURL = profilePhotoURL?.replace("upload/", "upload/w_200,h_200,c_auto/q_auto/f_auto/");
+%>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Settings | Inktale" }) %>
+        <script type="module" src="/js/script.js"></script>
+        <script type="module" src="/js/settings.js"></script>
+    </head>
+    <body>
+        <!-- #TOP APP BAR -->
+        <%- include("../partials/top_app_bar") %>
+
+        <main class="main">
+            <article class="page settings-page">
+                <div class="container">
+                    <h2 class="headline-small page-title text-on-surface">
+                        Settings
+                    </h2>
+
+                    <div class="settings-wrapper">
+                        <div class="settings-card">
+                            <form class="settings-form" data-basic-infor-form>
+                                <div class="title-wrapper">
+                                    <h3 class="headline-small text-on-surafce">
+                                        Basic info
+                                    </h3>
+
+                                    <button type="submit" class="btn filled-tonal" data-basic-infor-submit>
+                                        <p class="label-large">Save changes</p>
+
+                                        <div class="state-layer"></div>
+                                    </button>
+                                </div>
+
+                                <p class="body-large text-on-surface-variant">
+                                    Profile photo
+                                </p>
+
+                                <div class="image-field-wrapper avatar-image-field">
+                                    <label for="profilePhoto" class="label label-large text-on-surface-variant">
+                                        <input 
+                                            type="file" 
+                                            name="profilePhoto" 
+                                            id="profilePhoto" 
+                                            accept="image/png, image/jpeg, image/jpg"
+                                            data-image-field
+                                        />
+
+                                        <i class="fa-solid fa-cloud-arrow-up"></i>
+
+                                        Upload photo
+                                    </label>
+
+                                    <% if (compressedProfilePhotoURL) { %>
+                                        <div class="image-preview show" data-image-preview>
+                                            <img 
+                                                src="<%= compressedProfilePhotoURL %>" 
+                                                alt="<%= name %>"
+                                                width="200"
+                                                height="200"
+                                                loading="lazy"
+                                                class="img-cover"
+                                            />
+                                        </div>
+                                    <% } else { %>
+                                        <div class="image-preview" data-image-preview></div>
+                                    <% }; %>
+
+                                    <button type="button" class="icon-btn filled-tonal" data-image-preview-clear>
+                                        <i class="fa-solid fa-trash-can"></i>
+
+                                        <div class="state-layer"></div>
+                                    </button>
+                                </div>
+
+                                <div class="wrapper">
+                                    <div class="text-field-wrapper">
+                                        <label for="name" class="label body-large">
+                                            Fill name
+                                        </label>
+
+                                        <input 
+                                            type="text" 
+                                            name="name" 
+                                            id="name" 
+                                            placeholder=" "
+                                            autocomplete="name"
+                                            value="<%= name %>"
+                                            required
+                                            class="body-large text-field"
+                                        />
+                                    </div>
+
+                                    <div class="text-field-wrapper">
+                                        <label for="username" class="label body-large">
+                                            Username
+                                        </label>
+
+                                        <input 
+                                            type="text" 
+                                            name="username" 
+                                            id="username" 
+                                            placeholder=" "
+                                            autocomplete="username"
+                                            value="<%= username %>"
+                                            required
+                                            class="body-large text-field"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div class="text-field-wrapper">
+                                    <label for="email" class="label body-large">
+                                        Email address
+                                    </label>
+
+                                    <input 
+                                        type="email" 
+                                        name="email" 
+                                        id="email" 
+                                        placeholder=" "
+                                        autocomplete="email"
+                                        value="<%= email %>"
+                                        required
+                                        class="body-large text-field"
+                                    />
+                                </div>
+
+                                <div class="text-field-wrapper">
+                                    <label for="bio" class="label body-large">
+                                        Short bio
+                                    </label>
+
+                                    <input 
+                                        type="text" 
+                                        name="bio" 
+                                        id="bio" 
+                                        placeholder=" "
+                                        value="<%= bio %>"
+                                        required
+                                        maxlength="120"
+                                        class="body-large text-field"
+                                    />
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="settings-card">
+                            <form class="settings-form" data-password-form>
+                                <div class="title-wrapper">
+                                    <h3 class="headline-small text-on-surafce">
+                                        change password
+                                    </h3>
+
+                                    <button type="submit" class="btn filled-tonal" data-basic-infor-submit>
+                                        <p class="label-large">Save changes</p>
+
+                                        <div class="state-layer"></div>
+                                    </button>
+                                </div>
+
+                                <p class="body-large text-on-surface-variant">
+                                    Profile photo
+                                </p>
+
+                                <div class="text-field-wrapper">
+                                    <label for="old-password" class="label body-large">
+                                        Old password
+                                    </label>
+
+                                    <input 
+                                        type="password" 
+                                        name="old_password" 
+                                        id="old-password" 
+                                        placeholder=" "
+                                        autocomplete="current-password"
+                                        required
+                                        class="body-large text-field"
+                                    />
+                                </div>
+
+                                <div class="text-field-wrapper">
+                                    <label for="new-password" class="label body-large">
+                                        New password
+                                    </label>
+
+                                    <input 
+                                        type="password" 
+                                        name="password" 
+                                        id="new-password" 
+                                        placeholder=" "
+                                        autocomplete="new-password"
+                                        required
+                                        minlength="8"
+                                        class="body-large text-field"
+                                    />
+                                </div>
+
+                                <div class="text-field-wrapper">
+                                    <label for="confirm-password" class="label body-large">
+                                        Confirm password
+                                    </label>
+
+                                    <input 
+                                        type="password" 
+                                        name="confirm_password" 
+                                        id="confirm-password" 
+                                        placeholder=" "
+                                        autocomplete="new-password"
+                                        required
+                                        class="body-large text-field"
+                                    />
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="settings-card">
+                            <h3 class="headline-small text-error">
+                                Delete acconut
+                            </h3>
+
+                            <p class="body-large text-on-surface-variant card-text">
+                                Deleting your account on Inktale will result in the permanent deletion of your personal data. This action cannot be undo.
+                            </p>
+
+                            <button class="btn btn-fill error" data-accout-delete>
+                                <p class="label-large">Delete your account</p>
+
+                                <div class="state-layer"></div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+
+        <div class="snackbar-wrapper" data-stackbar-wrapper></div>
+    </body>
+</html>

@@ -1,0 +1,100 @@
+<% 
+    const {
+        _id: blogId,
+        banner: {
+            url: bannerURL
+        } = {},
+        title,
+        owner: {
+            name,
+            username,
+            profilePhoto: {
+                url: profilePhotoURL
+            } = {}
+        },
+        createdAt,
+        readingTime,
+        reaction,
+        totalBookmark
+    } = locals.blog;
+
+    const compressedBannerURL = bannerURL?.replace("upload/", "upload/w_360,h_155,c_auto/q_auto/f_auto/");
+
+    const compressedProfilePhotoURL = profilePhotoURL?.replace("upload/", "upload/w_40,h_40,c_auto/q_auto/f_auto/");
+%>
+
+<div class="card">
+    <% if (compressedBannerURL) { %>
+        <figure class="card-banner img-holder">
+            <img 
+                src="<%= compressedBannerURL %>" 
+                width="360"
+                height="155"
+                alt="<%= title %>"
+                loading="lazy"
+                class="img-cover"
+            />
+        </figure>
+    <% }; %>
+
+    <div class="card-content">
+        <div class="card-meta">
+            <div class="avatar">
+                <% if (compressedProfilePhotoURL) { %>
+                    <img 
+                        src="<%= compressedProfilePhotoURL %>" 
+                        alt="<%= title %>"
+                        width="32"
+                        height="32"
+                        loading="lazy"
+                        class="img-cover"
+                    />
+                <% } else { %>
+                    <p class="title-medium">
+                        <%= name.charAt(0) %>
+                    </p>
+                <% }; %>
+            </div>
+
+            <div>
+                <p class="label-large text-on-surface">
+                    <%= name %>
+                </p>
+
+                <p class="body-small text-on-surface">
+                    <%= new Date(createdAt).toLocaleDateString("en-US", { month: 'short', day: 'numeric', year: 'numeric' }) %>
+                </p>
+            </div>
+
+            <p class="label-small text-on-surface-variant trailing-text">
+                <%= readingTime %> min read
+            </p>
+        </div>
+
+        <h3 class="card-title title-medium text-on-surface">
+            <%= title %>
+        </h3>
+    </div>
+
+    <div class="card-footer">
+        <div class="wrapper">
+            <i class="fa-regular fa-heart || icon-small"></i>
+
+            <p class="body-medium text-on-surface-variant">
+                <%= reaction %> Reactions
+            </p>
+        </div>
+
+        <div class="wrapper">
+            <i class="fa-regular fa-bookmark || icon-small"></i>
+
+            <p class="body-medium text-on-surface-variant">
+                <%= totalBookmark %> Bookmarks
+            </p>
+        </div>
+    </div>
+
+    <a href="/blogs/<%= blogId %>" title="<%= title %>" class="card-link"></a>
+
+    <div class="state-layer"></div>
+</div>

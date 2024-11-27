@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Home | Inktale" }) %>
+        <script type="module" src="/js/script.js"></script>
+    </head>
+    <body>
+        <!-- #TOP APP BAR -->
+        <%- include("../partials/top_app_bar") %>
+
+        <main class="main">
+            <article class="page home-page">
+                <div class="container">
+                    <h2 class="headline-small page-title text-on-surface">Latest blogs</h2>
+
+                    <div class="blog-list">
+                        <% if (locals.latestBlogs.length) { %>
+                            <% locals.latestBlogs.forEach(blog => { %>
+                                <%- include("../partials/card", { blog }); %>
+                            <% }); %>
+                        <% }; %>
+                    </div>
+
+                    <% if (locals.pagination.next || locals.pagination.prev) { %>
+                        <%- include("../partials/pagination"); %>
+                    <% }; %>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+    </body>
+</html>

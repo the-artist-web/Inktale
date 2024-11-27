@@ -1,0 +1,104 @@
+<% 
+    const {
+        blogs,
+        blogPublished,
+        totalReactions,
+        totalVisits
+    } = locals.loggedUser;
+%>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Dashboard | Inktale" }) %>
+        <script type="module" src="/js/script.js"></script>
+        <script type="module" src="/js/delete_blog.js"></script>
+    </head>
+    <body>
+        <!-- #TOP APP BAR -->
+        <%- include("../partials/top_app_bar") %>
+
+        <main class="main">
+            <article class="page home-page">
+                <div class="container">
+                    <h2 class="headline-small page-title text-on-surface">Dashboard</h2>
+
+                    <section class="analytics-list">
+                        <div class="analytics-card">
+                            <div class="analytics-icon-box">
+                                <i class="fa-solid fa-eye"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="display-medium text-on-surface card-title">
+                                    <%= totalVisits.toLocaleString("en-US") %>
+                                </h3>
+
+                                <p class="title-medium text-on-surface-variant">
+                                    Total Visits
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="analytics-card">
+                            <div class="analytics-icon-box">
+                                <i class="fa-solid fa-heart"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="display-medium text-on-surface card-title">
+                                    <%= totalReactions.toLocaleString("en-US") %>
+                                </h3>
+
+                                <p class="title-medium text-on-surface-variant">
+                                    Total Reactions
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="analytics-card">
+                            <div class="analytics-icon-box">
+                                <i class="fa-solid fa-newspaper"></i>
+                            </div>
+
+                            <div>
+                                <h3 class="display-medium text-on-surface card-title">
+                                    <%= blogPublished.toLocaleString("en-US") %>
+                                </h3>
+
+                                <p class="title-medium text-on-surface-variant">
+                                    Article Published
+                                </p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 class="title-large title text-on-surface">
+                            Posts
+                        </h2>
+
+                        <div class="post-lists">
+                            <% if (blogs.length) { %>
+                                <% blogs.forEach(blog => { %>
+                                    <%- include("../partials/list_item", { blog }); %>
+                                <% }); %>
+                            <% } else { %>
+                                <div class="list-item">
+                                    <p class="text-on-surface-variant body-large">
+                                        You haven't written anything yet.
+                                    </p>
+                                </div>
+                            <% }; %>
+                        </div>
+                    </section>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+
+        <div class="snackbar-wrapper" data-stackbar-wrapper></div>
+    </body>
+</html>

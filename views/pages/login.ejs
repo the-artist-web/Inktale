@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Login | Inktale" }) %>
+        <script type="module" src="/js/login.js"></script>
+    </head>
+    <body>
+        <section class="form-section section">
+            <div class="container">
+                <div class="form-card">
+                    <div class="card-header">
+                        <a href="/" class="logo">
+                            <img 
+                                src="/images/logo-light.svg"
+                                alt="Inktale"
+                                width="163" 
+                                height="40" 
+                                loading="lazy"
+                                class="light"
+                            />
+
+                            <img 
+                                src="/images/logo-dark.svg"
+                                alt="Inktale"
+                                width="163" 
+                                height="40" 
+                                loading="lazy"
+                                class="dark"
+                            />
+                        </a>
+
+                        <p class="text-on-surface-variant body-large">
+                            Join the inktale community
+                        </p>
+                    </div>
+
+                    <form action="/login" class="form" data-form>
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="email" 
+                                class="label body-large"
+                            >Email</label>
+                            <input 
+                                type="email" 
+                                name="email" 
+                                id="email" 
+                                autocomplte="email" 
+                                placeholder="" 
+                                required 
+                                autofocus
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <div class="text-field-wrapper">
+                            <label 
+                                for="password" 
+                                class="label body-large"
+                            >Password</label>
+                            <input 
+                                type="password" 
+                                name="password" 
+                                id="password" 
+                                autocomplte="password" 
+                                placeholder="" 
+                                minlength="8" 
+                                required 
+                                class="text-field body-large"
+                            />
+                        </div>
+
+                        <button 
+                            type="submit" 
+                            class="btn btn-fill" 
+                            data-submit-btn
+                        >
+                            <p class="label-large">Sign in</p>
+
+                            <div class="state-layer"></div>
+                        </button>
+                    </form>
+
+                    <div class="card-footer">
+                        <p class="label-large">New to Inktale?</p>
+
+                        <a href="/register" class="text-primary label-large">Create account</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="snackbar-wrapper" data-stackbar-wrapper></div>
+    </body>
+</html>

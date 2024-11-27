@@ -1,0 +1,26 @@
+{
+  "name": "inktale",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "the-artist-web",
+  "license": "Apache-2.0",
+  "description": "Building a Full-Stack Blog Application with NodeJS & MongoDB",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cloudinary": "^2.5.1",
+    "connect-mongo": "^5.1.0",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "express-session": "^1.18.1",
+    "highlight.js": "^11.10.0",
+    "markdown-it": "^14.1.0",
+    "mongoose": "^8.8.1",
+    "nodemon": "^3.1.7"
+  }
+}

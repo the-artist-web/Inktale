@@ -1,0 +1,98 @@
+<% 
+    const {
+        profilePhoto: {
+            url: profilePhotoURL = "/images/profilePhoto-default.jpg"
+        } = {},
+        name: profileName,
+        username: profileUsername,
+        bio,
+        blogPublished,
+        createdAt
+    } = locals.profile;
+
+    const compressedProfilePhotoURL = profilePhotoURL?.replace("upload/", "upload/w_200,h_200,c_auto/q_auto/f_auto/");
+%>
+
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: `${profileName} | Inktale` }) %>
+        <script type="module" src="/js/script.js"></script>
+    </head>
+    <body>
+        <!-- #TOP APP BAR -->
+        <%- include("../partials/top_app_bar") %>
+
+        <main class="main">
+            <article class="page profile-page">
+                <div class="container">
+                    <div class="profile-card">
+                        <figure class="profile-image img-holder">
+                            <img 
+                                src="<%= compressedProfilePhotoURL %>" 
+                                alt="<%= profileName %>" 
+                                loading="lazy"
+                                class="img-cover"
+                            />
+                        </figure>
+
+                        <div class="profile-content">
+                            <h3 class="title headline-medium text-on-surface">
+                                <%= profileName %>
+                            </h3>
+
+                            <p class="bio body-large text-on-surface-variant">
+                                <%= bio || "404 bio not found!" %>
+                            </p>
+
+                            <div class="profile-meta-list">
+                                <div class="profile-meta-item text-on-surface-variant">
+                                    <i class="fa-solid fa-calendar-days"></i>
+
+                                    <p class="body-large text-on-surface-variant">
+                                        Member since <%= new Date(createdAt).toLocaleDateString("en-US", { month: 'short', day: 'numeric', year: 'numeric' }); %>
+                                    </p>
+                                </div>
+
+                                <div class="profile-meta-item text-on-surface-variant">
+                                    <i class="fa-solid fa-newspaper"></i>
+
+                                    <p class="body-large text-on-surface-variant">
+                                        <%= blogPublished %> blog published
+                                    </p>
+                                </div>
+                            </div>
+
+                            <% if (profileUsername === locals.sessionUser?.username) { %>
+                                <a href="/settings" class="btn filled-tonal">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+
+                                    <p class="label-large">Edit profile</p>
+
+                                    <div class="state-layer"></div>
+                                </a>
+                            <% }; %>
+                        </div>
+                    </div>
+
+                    <div class="divider"></div>
+
+                    <div class="blog-list">
+                        <% if (locals.profileBlogs.length) { %>
+                            <% locals.profileBlogs.forEach(blog => { %>
+                                <%- include("../partials/card", { blog }) %>
+                            <% }); %>
+                        <% }; %>
+                    </div>
+
+                    <% if (locals.pagination.next || locals.pagination.prev) { %>
+                        <%- include("../partials/pagination"); %>
+                    <% }; %>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+    </body>
+</html>

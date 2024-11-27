@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include("../layouts/head", { title: "Reading list | Inktale" }) %>
+        <script type="module" src="/js/script.js"></script>
+    </head>
+    <body>
+        <!-- #TOP APP BAR -->
+        <%- include("../partials/top_app_bar") %>
+
+        <main class="main">
+            <article class="page">
+                <div class="container">
+                    <h2 class="headline-small page-title text-on-surface">Reading list</h2>
+
+                    <div class="blog-list">
+                        <% if (locals.readingListBlogs.length) { %>
+                            <% locals.readingListBlogs.forEach(blog => { %>
+                                <%- include("../partials/card", { blog }) %>
+                            <% }); %>
+                        <% } else { %>
+                            <p class="body-large text-on-surface-variant">
+                                You haven't added any article in reading list.
+                            </p>
+                        <% }; %>
+                    </div>
+
+                    <% if (locals.pagination.next || locals.pagination.prev) { %>
+                        <%- include("../partials/pagination"); %>
+                    <% }; %>
+                </div>
+            </article>
+        </main>
+
+        <!-- #FOOTER -->
+        <%- include("../layouts/footer") %>
+    </body>
+</html>
