@@ -142,5 +142,3 @@ const server = app.listen(PORT, async () => {
 });
 
 server.on("close", async () => await disconnectDB());
-
-module.exports = app;
