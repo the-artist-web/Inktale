@@ -17,3 +17,6 @@
         </td>
     </tr>
 </table>
+
+<h2>Demo Shots:</h2>
+<img src="./design/design-ui-ux.png">
