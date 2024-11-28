@@ -1,13 +1,16 @@
 {
   "name": "inktale",
   "version": "1.0.0",
-  "main": "app.js",
+  "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
     "start": "node app.js"
   },
   "keywords": [],
   "author": "the-artist-web",
+  "engines": {
+    "node": "22.11.0"
+  },
   "license": "Apache-2.0",
   "description": "Building a Full-Stack Blog Application with NodeJS & MongoDB",
   "dependencies": {
